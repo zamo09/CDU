@@ -1,3 +1,10 @@
+<?php 
+session_start();
+if (isset($_SESSION["user"])){
+	header("location:mod/");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,13 +39,13 @@
                     <img src="img/company_logo2.png" alt="IMG">
                 </div>
 
-                <form class="login100-form validate-form">
+                <div class="login100-form validate-form">
                     <span class="login100-form-title">
 						Control de Unidades
 					</span>
 
                     <div class="wrap-input100 validate-input" data-validate="Ingresa tu nombre de usuario">
-                        <input class="input100" type="text" name="Usuario" placeholder="Usuario">
+                        <input class="input100" type="text" name="user" id="user" placeholder="Usuario">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
 							<i class="fa fa-user" aria-hidden="true"></i>
@@ -46,7 +53,7 @@
                     </div>
 
                     <div class="wrap-input100 validate-input" data-validate="Contraseña Requerida">
-                        <input class="input100" type="password" name="pass" placeholder="Contraseña">
+                        <input class="input100" type="password" name="pass" id="pass" placeholder="Contraseña">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
 							<i class="fa fa-lock" aria-hidden="true"></i>
@@ -54,20 +61,30 @@
                     </div>
 
                     <div class="container-login100-form-btn">
-                        <button class="login100-form-btn">
+                        <button class="login100-form-btn" name="login" id="login">
 							Inicio
 						</button>
-                    </div>
-
+                    </div><br>
                     <div class="text-center p-t-136">
                         <a class="txt2" href="#">
 							Vista de Operadores
 							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
 						</a>
                     </div>
-                </form>
+                   
+	
+
+                   
+                </div>
+                <div class="container">
+		<div class="row justify-content-center align-items-center alerta_error">
+			<span id="result"></span>
+		</div>
+	</div>
             </div>
+            
         </div>
+        
     </div>
 
 
@@ -86,10 +103,40 @@
         $('.js-tilt').tilt({
             scale: 1.1
         })
-    </script>
+	</script>
     <!--===============================================================================================-->
     <script src="js/main.js"></script>
 
 </body>
+<script>
+
+$(document).ready(function(){
+			$('#login').click(function(){
+				var user = $('#user').val();
+				var pass = $('#pass').val();
+				if ($.trim(user).length > 0 && $.trim(pass).length > 0){
+					$.ajax({
+						url: "php/select/validar_login.php",
+						method: "POST",
+						data: {user:user, pass:pass},
+						cache: "false",
+						beforeSend:function(){
+							$('#login').val("Validando...");
+						},
+						success:function(data){
+							$('#login').val("Continuar");
+							if (data=="1"){
+								$(location).attr('href','mod');
+							}else{
+								$('#result').html("<div class='error-btn'>Usuario o contraseña incorrectas.</div>");
+							}
+						}
+					});
+				}else{
+					$('#result').html("<div class='error-btn'>Ingresa un usuario o contraseña</div>");
+				};
+			});
+		});
+	</script>
 
 </html>
