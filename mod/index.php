@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="../css/datatables.min.css">
     <link rel="stylesheet" type="text/css" href="../css/style3.css">
     <link rel="stylesheet" href="../vendor/animate/animate.css">
+    <link rel="stylesheet" type="text/css" href="../vendor/Hover-master/css/hover.css">
     
 	<script type="text/javascript" src="../vendor/sweetalert/sweetalert.min.js"></script>
     <title>CDU</title>
@@ -29,6 +30,8 @@
     ?>
 
 
+
+
 <div class="container animated login zoomIn margensuperior">
 	<div class="row h-100 justify-content-center align-items-center">   
 		<div class="col-md-12">     	
@@ -37,13 +40,13 @@
     <!-- Registrar-->
   <div class="row card-body justify-content-md-center align-items-center text-center">
   <div class="col-md-9">
-    <h3>Registrar</h3><br>
+    <h3>Registrar <i class="fas fa-exchange-alt"></i></h3><br>
     <div class="row justify-content-md-center">
       <div class="col-md-3">
-      <button type="button" class="btn btn-outline-success">Regreso</button>
+      <a href="#" class="btn btn-success button hvr-pulse hvr-bounce-to-right" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Salida <i class="fas fa-plane-departure"></i></a>
       </div>
       <div class="col-md-3">
-      <button type="button" class="btn btn-outline-danger">Salida</button>
+      <button type="button" class="btn btn-danger button hvr-pulse hvr-bounce-to-right">Regreso <i class="fas fa-plane-arrival"></i></button>
       </div>
     </div>
   </div>
@@ -52,16 +55,16 @@
     <!-- Reportes-->
     <div class="row card-body justify-content-md-center align-items-center text-center">
   <div class="col-md-9">
-    <h3>Reportes</h3><br>
+    <h3>Reportes <i class="fas fa-car"></i></h3><br>
     <div class="row justify-content-md-center">
       <div class="col-md-3">
-      <button type="button" class="btn btn-outline-success">Reportar Falla</button>
+      <button type="button" class="btn btn-secondary button hvr-pulse hvr-bounce-to-right">Reportar Falla <i class="fas fa-car-side"></i></button>
       </div>
       <div class="col-md-3">
-      <button type="button" class="btn btn-outline-success">Reportar Accidente</button>
+      <button type="button" class="btn btn-warning button hvr-pulse hvr-bounce-to-right">Reportar Accidente <i class="fas fa-car-crash"></i></button>
       </div>
       <div class="col-md-3">
-      <button type="button" class="btn btn-outline-success">Registrar Vale</button>
+      <button type="button" class="btn btn-primary button hvr-pulse hvr-bounce-to-right">Registrar Vale <i class="fas fa-gas-pump"></i></button>
       </div>
       <div class="col-md-3">
       <button type="button" class="btn btn-outline-danger">Subir Archivo</button>
@@ -73,13 +76,13 @@
       <!-- Lavado-->
       <div class="row card-body justify-content-md-center align-items-center text-center">
   <div class="col-md-9">
-    <h3>Lavado</h3><br>
+    <h3>Lavado <i class="fas fa-bath"></i></h3><br>
     <div class="row justify-content-md-center">
       <div class="col-md-3">
-      <button type="button" class="btn btn-outline-success">Regreso</button>
+      <button type="button" class="btn btn-success button hvr-pulse hvr-bounce-to-right">Salida <i class="fas fa-paper-plane"></i></button>
       </div>
       <div class="col-md-3">
-      <button type="button" class="btn btn-outline-danger">Salida</button>
+      <button type="button" class="btn btn-danger button hvr-pulse hvr-bounce-to-right">Regreso <i class="fas fa-paper-plane"></i></button>
       </div>
     </div>
   </div>
@@ -97,7 +100,34 @@
 
 </div><!-- Content -->
 </div><!-- Wrapper"-->
-
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Recipient:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Message:</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Send message</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
@@ -116,6 +146,16 @@
     <script src="../js/jquery.mCustomScrollbar.concat.min.js"></script>
 
     <script type="text/javascript">
+    $('#exampleModal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) // Button that triggered the modal
+  var recipient = button.data('whatever') // Extract info from data-* attributes
+  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+  var modal = $(this)
+  modal.find('.modal-title').text('New message to ' + recipient)
+  modal.find('.modal-body input').val(recipient)
+});
+
     $(document).ready(function () {
         $("#sidebar").mCustomScrollbar({
             theme: "minimal"
