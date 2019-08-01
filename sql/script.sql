@@ -22,3 +22,5 @@ CREATE TABLE Conductor(
 	PRIMARY KEY (id_conductor),
 	FOREIGN KEY (id_usuario) REFERENCES Usuarios (id_usuario)
 );
+
+INSERT INTO usuarios (nombre,usuario,contrasena,activo,tipo) VALUES ('Angelica Moreno','angelica','123',1,'root');

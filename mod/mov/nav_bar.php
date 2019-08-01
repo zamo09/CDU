@@ -61,9 +61,9 @@
         </ul>
     </nav>
     <!-- Page Content -->
-    <div id="content">
+    <div id="content fondo">
                 
-<div class="wrapper">
+<div class="wrapper  ">
     <!-- Sidebar -->
     <nav id="sidebar">
         <div id="dismiss">
@@ -95,7 +95,7 @@
                                 <a class="nav-link" href="#">Page</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Page</a>
+                                <a class="nav-link" href="../php/conexion/cerrar.php">Cerrar Sesion</a>
                             </li>
                             
                         </ul>

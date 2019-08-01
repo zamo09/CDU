@@ -9,11 +9,12 @@
 	<link rel="stylesheet" type="text/css" href="../fonts/font-awesome-5.9.0/css/all.css">
     <link rel="stylesheet" type="text/css" href="../css/datatables.min.css">
     <link rel="stylesheet" type="text/css" href="../css/style3.css">
+    <link rel="stylesheet" href="../vendor/animate/animate.css">
     
 	<script type="text/javascript" src="../vendor/sweetalert/sweetalert.min.js"></script>
     <title>CDU</title>
 </head>
-<body  class="fixed-sn light-blue-skin">
+<body  class="fixed-sn light-blue-skin fondo">
     <?php
         session_start();
         if(!isset($_SESSION["user"])){
@@ -22,11 +23,72 @@
                 //incluimos la barra de navegacion 
                 include "mov/nav_bar.php";
               ?>
-              <a href="../php/conexion/cerrar.php">Cerrar</a>
+                <!-- <a href="../php/conexion/cerrar.php">Cerrar</a> --> 
               <?php  
             }
     ?>
-    <h1>Si entro</h1>
+
+
+<div class="container animated login zoomIn margensuperior">
+	<div class="row h-100 justify-content-center align-items-center">   
+		<div class="col-md-12">     	
+			<div class="card">
+				<div class="card-body">
+    <!-- Registrar-->
+  <div class="row card-body justify-content-md-center align-items-center text-center">
+  <div class="col-md-9">
+    <h3>Registrar</h3><br>
+    <div class="row justify-content-md-center">
+      <div class="col-md-3">
+      <button type="button" class="btn btn-outline-success">Regreso</button>
+      </div>
+      <div class="col-md-3">
+      <button type="button" class="btn btn-outline-danger">Salida</button>
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- Fin de registrar -->
+    <!-- Reportes-->
+    <div class="row card-body justify-content-md-center align-items-center text-center">
+  <div class="col-md-9">
+    <h3>Reportes</h3><br>
+    <div class="row justify-content-md-center">
+      <div class="col-md-3">
+      <button type="button" class="btn btn-outline-success">Reportar Falla</button>
+      </div>
+      <div class="col-md-3">
+      <button type="button" class="btn btn-outline-success">Reportar Accidente</button>
+      </div>
+      <div class="col-md-3">
+      <button type="button" class="btn btn-outline-success">Registrar Vale</button>
+      </div>
+      <div class="col-md-3">
+      <button type="button" class="btn btn-outline-danger">Subir Archivo</button>
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- Fin de reportes -->
+      <!-- Lavado-->
+      <div class="row card-body justify-content-md-center align-items-center text-center">
+  <div class="col-md-9">
+    <h3>Lavado</h3><br>
+    <div class="row justify-content-md-center">
+      <div class="col-md-3">
+      <button type="button" class="btn btn-outline-success">Regreso</button>
+      </div>
+      <div class="col-md-3">
+      <button type="button" class="btn btn-outline-danger">Salida</button>
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- Fin de Lavado -->
+  </div>
+</div>
+        </div>
+	</div></div>
     
    
 
