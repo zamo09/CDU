@@ -12,22 +12,35 @@
             <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-car"></i> &nbsp;Unidades</a> 
                 <ul class="collapse list-unstyled" id="homeSubmenu">
                     <li>
-                        <a href="#">Home 1</a>
+                    <a id="addUnidad" href="#"><i class="fas fa-car-side"></i> Agregar Unidad</a>
                     </li>
                     <li>
-                        <a href="#">Home 2</a>
+                        <a href="#">Lista de unidades</a>
                     </li>
                     <li>
-                        <a href="#">Home 3</a>
+                        <a href="#">Asignar unidad</a>
                     </li>
                 </ul>
             </li>
             <li>
-                <a href="#">About</a>
-                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Pages</a>
+                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-address-card"></i> Condutores</a>
                 <ul class="collapse list-unstyled" id="pageSubmenu">
                     <li>
-                        <a href="#">Page 1</a>
+                        <a id="addConductor2" href="#"><i class="fas fa-user-cog"></i> Agregar Conductor</a>
+                    </li>
+                    <li>
+                        <a href="#">Lista de Conductores</a>
+                    </li>
+                    <li>
+                        <a href="#">Asignar Ruta</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#ptrpSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fab fa-black-tie"></i> Administrar</a>
+                <ul class="collapse list-unstyled" id="ptrpSubmenu">
+                    <li>
+                        <a id="addRuta" href="#"><i class="fas fa-route"></i> Agregar Ruta</a>
                     </li>
                     <li>
                         <a href="#">Page 2</a>
@@ -36,6 +49,9 @@
                         <a href="#">Page 3</a>
                     </li>
                 </ul>
+            </li>
+            <li>
+            <a href="#">About</a>
             </li>
             <li>
                 <a href="#">Portfolio</a>
@@ -43,21 +59,7 @@
             <li>
                 <a href="#">Contact</a>
             </li>
-            <li>
-                <a href="#">About</a>
-                <a href="#ptrpSubmenu" data-toggle="collapse" aria-expanded="false">Otro</a>
-                <ul class="collapse list-unstyled" id="ptrpSubmenu">
-                    <li>
-                        <a href="#">Page 1</a>
-                    </li>
-                    <li>
-                        <a href="#">Page 2</a>
-                    </li>
-                    <li>
-                        <a href="#">Page 3</a>
-                    </li>
-                </ul>
-            </li>
+            
         </ul>
     </nav>
     <!-- Page Content -->
@@ -92,7 +94,7 @@
                                 <a class="nav-link" href="#">Page</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Page</a>
+                                <a class="nav-link" id="addConductor">sadasPage</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="../php/conexion/cerrar.php">Cerrar Sesion</a>
