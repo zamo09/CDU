@@ -51,10 +51,10 @@
     <h3>Registrar <i class="fas fa-exchange-alt"></i></h3><br>
     <div class="row justify-content-md-center">
       <div class="col-md-3">
-      <a href="#" class="btn btn-success button hvr-pulse hvr-bounce-to-right btn-lg" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Salida <i class="fas fa-plane-departure"></i></a>
+      <a href="#" class="btn btn-success button hvr-pulse hvr-bounce-to-right " data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Salida <i class="fas fa-plane-departure"></i></a>
       </div>
       <div class="col-md-3">
-      <button type="button" class="btn btn-danger button hvr-pulse hvr-bounce-to-right btn-lg">Regreso <i class="fas fa-plane-arrival"></i></button>
+      <button type="button" class="btn btn-danger button hvr-pulse hvr-bounce-to-right ">Regreso <i class="fas fa-plane-arrival"></i></button>
       </div>
     </div>
   </div>
@@ -66,13 +66,13 @@
     <h3>Reportes <i class="fas fa-car"></i></h3><br>
     <div class="row justify-content-md-center">
       <div class="col-md-4">
-      <button type="button" class="btn btn-secondary button hvr-pulse hvr-bounce-to-right btn-lg">Reportar Falla <i class="fas fa-car-side"></i></button>
+      <button type="button" class="btn btn-secondary button hvr-pulse hvr-bounce-to-right ">Reportar Falla <i class="fas fa-car-side"></i></button>
       </div>
       <div class="col-md-4">
-      <button type="button" class="btn btn-warning button hvr-pulse hvr-bounce-to-right btn-lg">Reportar Accidente <i class="fas fa-car-crash"></i></button>
+      <button type="button" class="btn btn-warning button hvr-pulse hvr-bounce-to-right ">Reportar Accidente <i class="fas fa-car-crash"></i></button>
       </div>
       <div class="col-md-4">
-      <button type="button" class="btn btn-primary button hvr-pulse hvr-bounce-to-right btn-lg">Registrar Vale <i class="fas fa-gas-pump"></i></button>
+      <button type="button" class="btn btn-primary button hvr-pulse hvr-bounce-to-right ">Registrar Vale <i class="fas fa-gas-pump"></i></button>
       </div>
     </div>
   </div>
@@ -84,10 +84,10 @@
     <h3>Lavado <i class="fas fa-bath"></i></h3><br>
     <div class="row justify-content-md-center">
       <div class="col-md-3">
-      <button type="button" class="btn btn-success button hvr-pulse hvr-bounce-to-right btn-lg">Salida <i class="fas fa-paper-plane"></i></button>
+      <button type="button" class="btn btn-success button hvr-pulse hvr-bounce-to-right ">Salida <i class="fas fa-paper-plane"></i></button>
       </div>
       <div class="col-md-3">
-      <button type="button" class="btn btn-danger button hvr-pulse hvr-bounce-to-right btn-lg">Regreso <i class="fas fa-paper-plane"></i></button>
+      <button type="button" class="btn btn-danger button hvr-pulse hvr-bounce-to-right ">Regreso <i class="fas fa-paper-plane"></i></button>
       </div>
     </div>
   </div>
@@ -149,6 +149,38 @@
 
     <script type="text/javascript">
 //Metodos para agregar datos
+
+//metodo para añadir al conductor
+function agregarconductor(){
+				var nombre = $('#NombreConductor').val();
+				var empresa = $('#SelectEmpresaConductor').val();
+        var ruta = $("#SelectRutaConductor").val();
+        var departamento = $("#SelectDepartamentoConductor").val();
+        var tipo = $("#TipoLicenciaConductor").val();
+        var fecha = $("#FechaVencimientoConductor").val();
+				if ($.trim(nombre).length > 0 && $.trim(empresa).length > 0 && $.trim(ruta).length > 0 && $.trim(departamento).length > 0 && $.trim(tipo).length > 0 && $.trim(fecha).length > 0){
+					$.ajax({
+						url: "../php/insert/add_conductor.php",
+						method: "POST",
+						data: {nombre:nombre, empresa:empresa, ruta:ruta, departamento:departamento, tipo:tipo, fecha:fecha},
+						cache: "false",
+						beforeSend:function(){
+							$('#guardarconductor').val("Guardando...");
+						},
+						success:function(data){
+							$('#guardarconductor').val("Guardar");
+							if (data=="1"){
+								swal("Perfecto!!", ("Ahora el conductor " + nombre + " ya esta en el sistema" ), "success");
+                $("#Contenedor").load("Menu/conductor.php");
+							}else{
+								swal("Tenemos un problema", "No se pudo guardar el conductor" , "error");
+							}
+						}
+					});
+				} else {
+					swal("No me engañes", "Por favor todos los datos necesarios" , "error");
+				};
+			};
 
 //Agregar Ruta
 function agregarruta(){

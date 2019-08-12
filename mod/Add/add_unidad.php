@@ -15,11 +15,23 @@
 								<div class="input-group-prepend">
 									<label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-industry"></i></label>
 								</div>
-								<select class="custom-select form-control text-center" id="ConductorRuta">
-									<option selected value="">Asignar ruta...</option>
-									<option value="CBC">Samuel</option>
-									<option value="CBA">Angelica</option>
-								</select>
+								<?php		
+								include "../../php/conexion/conexion.php";		
+								include "../../php/log.php";	
+						                    		$SQL = "SELECT nombre,id_conductor FROM conductor WHERE activo = 1 AND id_ruta = 1;";
+													$selectDepartamentos = $con->query($SQL);
+													echo "<select class='custom-select form-control text-center' id='ConductorRuta'>";
+													echo "<option value='' selected>Asignar Ruta ...</option>";
+													while ($fila = $selectDepartamentos->fetch_array()) {
+														echo "<option value='".$fila[1]."'>" . $fila[0] . "</option>";
+													}
+													echo "</select>";
+													date_default_timezone_set("America/Mexico_City"); 
+													$fecha= date("d/m/Y H:i:s");
+													session_start();
+													$arreglo[0] = array("Se abrio el formulario de Add_Unidad ",$fecha ,$_SESSION['user']);
+													generarCSV($arreglo);
+								?>
 							</div>                   					                     	
 						</div><br>
 						<div class="row justify-content-md-center">
