@@ -62,9 +62,6 @@ $('.minMaxExample').datepicker({
 													echo "</select>";
 													date_default_timezone_set("America/Mexico_City"); 
 													$fecha= date("d/m/Y H:i:s");
-													session_start();
-													$arreglo[0] = array("Se abrio el formulario de Add_conductor ",$fecha ,$_SESSION['user']);
-													generarCSV($arreglo);
 								?>
 							</div>
 							<div class="input-group col-md-4">
@@ -87,11 +84,34 @@ $('.minMaxExample').datepicker({
 						</div>
 						<br>
 						<div class="row justify-content-md-center">
+							<div class="input-group col-md-4">
+								<div class="input-group-prepend">
+									<label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-industry"></i></label>
+								</div>
+								<?php		
+						                    		$SQL = "SELECT nombre,id_unidad FROM unidades WHERE activo = 1 AND asignada = 0;";
+													$selectDepartamentos = $con->query($SQL);
+													echo "<select class='custom-select form-control text-center' id='SelectUnidadConductor'>";
+													echo "<option value='' selected>Asignar Unidad...</option>";
+													while ($fila = $selectDepartamentos->fetch_array()) {
+														echo "<option value='".$fila[1]."'>" . $fila[0] . "</option>";
+													}
+													echo "</select>";
+													date_default_timezone_set("America/Mexico_City"); 
+													$fecha= date("d/m/Y H:i:s");
+													session_start();
+													$arreglo[0] = array("Se abrio el formulario de Add_conductor ",$fecha ,$_SESSION['user']);
+													generarCSV($arreglo);
+								?>
+							</div>
+						</div>
+						<br>
+						<div class="row justify-content-md-center">
 							<div class="col-lg-4 col-md-12 col-sm-12 text-right">
 								<button type="" class="btn btn-danger btn-lg btn-block" onClick="salida()"><i class="fas fa-times-circle "></i> Cancelar</button>
 							</div><br>              
 							<div class="col-lg-4 col-md-12 col-sm-12 text-left">
-								<button type="submit" id="guardarconductor" class="btn btn-success btn-lg btn-block" onClick="agregarconductor()"><i class="fas fa-save"></i> Guardar</button>
+								<button type="submit" id="guardarunidad" class="btn btn-success btn-lg btn-block" onClick="agregarconductor()"><i class="fas fa-save"></i> Guardar</button>
 							</div>
 						</div> 
 						<br>              	

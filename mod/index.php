@@ -148,7 +148,43 @@
     <script src="../js/jquery.mCustomScrollbar.concat.min.js"></script>
 
     <script type="text/javascript">
+
+
 //Metodos para agregar datos
+
+//metodo para añadir al conductor
+function agregarunidad(){
+				var nombre = $('#NombreUnidad').val();
+				var conductor = $('#ConductorUnidad').val();
+        var marca = $("#MarcaUnidad").val();
+        var modelo = $("#ModeloUnidad").val();
+        var placas = $("#PlacasUnidad").val();
+        var año = $("#AñoUnidad").val();
+        var tipo = $("#TipoUnidad").val();
+        var empresa = $("#SelectEmpresaUnidad").val();
+				if ($.trim(nombre).length > 0 && $.trim(conductor).length > 0 && $.trim(marca).length > 0 && $.trim(modelo).length > 0 && $.trim(placas).length > 0 && $.trim(año).length > 0 && $.trim(tipo).length > 0 && $.trim(empresa).length > 0){
+					$.ajax({
+						url: "../php/insert/add_unidad.php",
+						method: "POST",
+						data: {nombre:nombre, conductor:conductor, marca:marca, modelo:modelo, placas:placas, año:año, tipo:tipo, empresa:empresa},
+						cache: "false",
+						beforeSend:function(){
+							$('#guardarunidad').val("Guardando...");
+						},
+						success:function(data){
+							$('#guardarunidad').val("Guardar");
+							if (data=="1"){
+								swal("Perfecto!!", ("Ahora la unidad " + nombre + " ya esta en el sistema" ), "success");
+                $("#Contenedor").load("Menu/conductor.php");
+							}else{
+								swal("Tenemos un problema", "No se pudo guardar la unidad" , "error");
+							}
+						}
+					});
+				} else {
+					swal("No me engañes", "Por favor todos los datos necesario asd s" , "error");
+				};
+			};
 
 //metodo para añadir al conductor
 function agregarconductor(){
@@ -158,11 +194,12 @@ function agregarconductor(){
         var departamento = $("#SelectDepartamentoConductor").val();
         var tipo = $("#TipoLicenciaConductor").val();
         var fecha = $("#FechaVencimientoConductor").val();
-				if ($.trim(nombre).length > 0 && $.trim(empresa).length > 0 && $.trim(ruta).length > 0 && $.trim(departamento).length > 0 && $.trim(tipo).length > 0 && $.trim(fecha).length > 0){
+        var unidad = $('#SelectUnidadConductor').val();
+				if ($.trim(nombre).length > 0 && $.trim(empresa).length > 0 && $.trim(ruta).length > 0 && $.trim(departamento).length > 0 && $.trim(tipo).length > 0 && $.trim(fecha).length > 0 && $.trim(unidad).length > 0){
 					$.ajax({
 						url: "../php/insert/add_conductor.php",
 						method: "POST",
-						data: {nombre:nombre, empresa:empresa, ruta:ruta, departamento:departamento, tipo:tipo, fecha:fecha},
+						data: {nombre:nombre, empresa:empresa, ruta:ruta, departamento:departamento, tipo:tipo, fecha:fecha, unidad:unidad},
 						cache: "false",
 						beforeSend:function(){
 							$('#guardarconductor').val("Guardando...");
