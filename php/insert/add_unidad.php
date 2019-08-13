@@ -11,14 +11,17 @@
         $año =  mysqli_real_escape_string($con, $_POST["año"]);
         $tipo =  mysqli_real_escape_string($con, $_POST["tipo"]);
         $empresa =  mysqli_real_escape_string($con, $_POST["empresa"]);
+        $motor = mysqli_real_escape_string($con, $_POST["motor"]);
+        $poliza = mysqli_real_escape_string($con, $_POST["poliza"]);
+        $fechapoliza = mysqli_real_escape_string($con, $_POST["fechapoliza"]);
         date_default_timezone_set("America/Mexico_City"); 
         $fecha= date("Y/m/d H:i:s");
         $id = $_SESSION['id_usuario'];
         $usuario = $_SESSION['user'];
         if($conductor == '1'){
-            $sql =$con->query("INSERT INTO Unidades (nombre,activo,marca,modelo,placas,año,tipo,id_usuario,empresa,asignada) VALUES ('$nombre',1,'$marca','$modelo','$placas','$año','$tipo',$id,'$empresa',0) ");
+            $sql =$con->query("INSERT INTO Unidades (nombre,activo,marca,modelo,placas,año,tipo,id_usuario,empresa,asignada,numeromotor,numeropoliza,fechapoliza) VALUES ('$nombre',1,'$marca','$modelo','$placas','$año','$tipo',$id,'$empresa',0,'$motor','$poliza','$fechapoliza') ");
         }else{
-            $sql =$con->query("INSERT INTO Unidades (nombre,activo,marca,modelo,placas,año,tipo,id_usuario,empresa,asignada) VALUES ('$nombre',1,'$marca','$modelo','$placas','$año','$tipo',$id,'$empresa',1) ");
+            $sql =$con->query("INSERT INTO Unidades (nombre,activo,marca,modelo,placas,año,tipo,id_usuario,empresa,asignada,numeromotor,numeropoliza,fechapoliza) VALUES ('$nombre',1,'$marca','$modelo','$placas','$año','$tipo',$id,'$empresa',1,'$motor','$poliza','$fechapoliza') ");
             $sql =$con->query("UPDATE conductor SET id_unidad = (SELECT id_unidad FROM unidades WHERE nombre = '$nombre' AND marca = '$marca' AND empresa = '$empresa') WHERE id_conductor = $conductor;");
         }
 		if ($sql){

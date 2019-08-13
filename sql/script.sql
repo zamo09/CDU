@@ -38,6 +38,9 @@ CREATE TABLE Unidades(
 	id_usuario INT NOT NULL COMMENT 'Usuario que lo agrego',
 	empresa VARCHAR(3)  NOT NULL COMMENT 'Empresa a la que pertenece',
 	asignada BOOLEAN NOT NULL COMMENT 'Si la unidad esta asignada o no',
+	numeromotor VARCHAR(255) NOT NULL COMMENT 'Numero del motor de la unidad',
+	numeropoliza VARCHAR(255) NOT NULL COMMENT 'Numero de poliza de la unidad',
+	fechapoliza DATE NOT	NULL COMMENT 'Fecha en que expira la poliza',
 	PRIMARY KEY (id_unidad),
 	FOREIGN KEY (id_usuario) REFERENCES Usuarios (id_usuario)
 );
@@ -77,7 +80,7 @@ INSERT INTO departamentos (nombre,activo,id_usuario) VALUES ('Contabilidad',1,1)
 INSERT INTO Rutas (id_ruta,nombre,descripcion,activo,asignacion,disponible,id_usuario) VALUES (1,'Sin Ruta','Ruta creada por el sistema para usuarios sin asignacion',1,0,0,1);
 
 /* Insert obligatorio para la unidad Sin Asignar */
-INSERT INTO Unidades (nombre,activo,marca,modelo,placas,año,tipo,id_usuario,empresa,asignada) VALUES ('Sin unidad',1,'Sin marca','Sin modelo','0000',0,'Sin tipo',1,'CBA',0); 
+INSERT INTO Unidades (nombre,activo,marca,modelo,placas,año,tipo,id_usuario,empresa,asignada,numeromotor,numeropoliza,fechapoliza) VALUES ('Sin unidad',1,'Sin marca','Sin modelo','0000',0,'Sin tipo',1,'CBA',0,'0000','0000','0000/00/00/'); 
 
 /* Insert Obligatorio para el conductor Sin Conductor */
 INSERT INTO Conductor (nombre,activo,departamento,id_ruta,empresa,id_usuario,fecha,tipolic,fechalic,id_unidad) VALUES ('Sin Conductor',1,'Sin Departamento',1,'Sin Empresa',1,'0000/00/00','X','0000/00/00',1);

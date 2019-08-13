@@ -162,11 +162,14 @@ function agregarunidad(){
         var año = $("#AñoUnidad").val();
         var tipo = $("#TipoUnidad").val();
         var empresa = $("#SelectEmpresaUnidad").val();
-				if ($.trim(nombre).length > 0 && $.trim(conductor).length > 0 && $.trim(marca).length > 0 && $.trim(modelo).length > 0 && $.trim(placas).length > 0 && $.trim(año).length > 0 && $.trim(tipo).length > 0 && $.trim(empresa).length > 0){
+        var motor = $("#MotorUnidad").val();
+        var poliza = $("#PolizaUnidad").val();
+        var fechapoliza = $("#FechaVencimientoPlizaUnidad").val();
+				if ($.trim(nombre).length > 0 && $.trim(conductor).length > 0 && $.trim(marca).length > 0 && $.trim(modelo).length > 0 && $.trim(placas).length > 0 && $.trim(año).length > 0 && $.trim(tipo).length > 0 && $.trim(empresa).length > 0 && $.trim(motor).length > 0 && $.trim(poliza).length > 0 && $.trim(fechapoliza).length > 0){
 					$.ajax({
 						url: "../php/insert/add_unidad.php",
 						method: "POST",
-						data: {nombre:nombre, conductor:conductor, marca:marca, modelo:modelo, placas:placas, año:año, tipo:tipo, empresa:empresa},
+						data: {nombre:nombre, conductor:conductor, marca:marca, modelo:modelo, placas:placas, año:año, tipo:tipo, empresa:empresa, motor:motor, poliza:poliza, fechapoliza:fechapoliza},
 						cache: "false",
 						beforeSend:function(){
 							$('#guardarunidad').val("Guardando...");
@@ -241,31 +244,11 @@ function agregarruta(){
 								document.getElementById("DescripcionRuta").value = "";
 							}else{
                 alert(conductor);
-								swal("Tenemos un problema", "La ruta no se pudo guardar con conductor" , "error");
+								swal("Tenemos un problema", "La ruta no se pudo guardar" , "error");
 							}
 						}
 					});
-				} else if ($.trim(nombre).length > 0 && $.trim(descripcion).length > 0){
-          $.ajax({
-						url: "../php/insert/add_ruta.php",
-						method: "POST",
-						data: {nombre:nombre, descripcion:descripcion},
-						cache: "false",
-						beforeSend:function(){
-							$('#guardarruta').val("Guardando...");
-						},
-						success:function(data){
-							$('#guardarruta').val("Guardar");
-							if (data=="1"){
-								swal("Perfecto!!", ("Ahora la ruta " + nombre + " ya esta en el sistema" ), "success");
-								document.getElementById("NombreRuta").value = "";
-								document.getElementById("DescripcionRuta").value = "";
-							}else{
-								swal("Tenemos un problema", "La ruta no se pudo guardar sin conductor" , "error");
-							}
-						}
-					});
-        }else{
+				}else{
 					swal("No me engañes", "Por favor todos los datos necesarios" , "error");
 				};
 			};

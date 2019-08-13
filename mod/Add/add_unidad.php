@@ -1,3 +1,10 @@
+<script type="text/javascript">
+
+$('.minMaxExample2').datepicker({
+    language: 'en',
+    minDate: new Date() // Now can select only dates, which goes after today
+});
+</script>
 <div class="container animated login zoomIn">
 	<div class="row h-100 justify-content-center align-items-center">   
 		<div class="col-md-12">     	
@@ -20,7 +27,7 @@
 								include "../../php/log.php";	
 						                    		$SQL = "SELECT nombre,id_conductor FROM conductor WHERE activo = 1 AND id_ruta = 1;";
 													$selectDepartamentos = $con->query($SQL);
-													echo "<select class='custom-select form-control text-center' id='ConductorUnidad'>";
+													echo "<select class='custom-select form-control text-center' id='ConductorRuta'>";
 													echo "<option value='' selected>Asignar Conductor...</option>";
 													while ($fila = $selectDepartamentos->fetch_array()) {
 														echo "<option value='".$fila[1]."'>" . $fila[0] . "</option>";
@@ -59,6 +66,26 @@
 								</div>
 								<input type="text" class="form-control text-center" placeholder="Año de la unidad" aria-label="Nombre" aria-describedby="basic-addon1" id="AñoUnidad" >
 							</div>	            					                     	
+						</div><br>
+						<div class="row justify-content-md-center">
+						<div class="input-group col-md-4">
+								<div class="input-group-prepend">
+									<span class="input-group-text" id="basic-addon1"><i class="fas fa-car-side"></i></span>
+								</div>
+								<input type="text" class="form-control text-center" placeholder="Numero de motor " aria-label="Nombre" aria-describedby="basic-addon1" id="MotorUnidad" >
+							</div> 
+							<div class="input-group col-md-4">
+								<div class="input-group-prepend">
+									<span class="input-group-text" id="basic-addon1"><i class="fas fa-car-side"></i></span>
+								</div>
+								<input type="text" class="form-control text-center" placeholder="Poliza de la unidad" aria-label="Nombre" aria-describedby="basic-addon1" id="PolizaUnidad" >
+							</div> 
+							<div class="input-group col-md-4">
+								<div class="input-group-prepend">
+									<span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
+								</div>
+								<input type="text"  class="form-control text-center minMaxExample2"   data-date-format="yyyy/m/d" data-language='es' placeholder="Vencimiento poliza" id="FechaVencimientoPlizaUnidad">
+							</div>	 
 						</div><br>
 						<div class="row justify-content-md-center">
 							<div class="input-group col-md-4">
