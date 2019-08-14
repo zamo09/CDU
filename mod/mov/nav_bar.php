@@ -15,7 +15,7 @@
                     <a id="addUnidad" href="#"><i class="fas fa-car-side"></i> Agregar Unidad</a>
                     </li>
                     <li>
-                        <a href="#">Lista de unidades</a>
+                        <a href="#" id="listUnidades"><i class="far fa-list-alt"></i> Lista de unidades</a>
                     </li>
                     <li>
                         <a href="#">Asignar unidad</a>
@@ -29,7 +29,7 @@
                         <a id="addConductor2" href="#"><i class="fas fa-user-cog"></i> Agregar Conductor</a>
                     </li>
                     <li>
-                        <a href="#">Lista de Conductores</a>
+                        <a id="listConductores" href="#"><i class="far fa-list-alt"></i> Lista de Conductores</a>
                     </li>
                     <li>
                         <a href="#">Asignar Ruta</a>

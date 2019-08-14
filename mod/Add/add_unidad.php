@@ -27,7 +27,7 @@ $('.minMaxExample2').datepicker({
 								include "../../php/log.php";	
 						                    		$SQL = "SELECT nombre,id_conductor FROM conductor WHERE activo = 1 AND id_ruta = 1;";
 													$selectDepartamentos = $con->query($SQL);
-													echo "<select class='custom-select form-control text-center' id='ConductorRuta'>";
+													echo "<select class='custom-select form-control text-center' id='ConductorUnidad'>";
 													echo "<option value='' selected>Asignar Conductor...</option>";
 													while ($fila = $selectDepartamentos->fetch_array()) {
 														echo "<option value='".$fila[1]."'>" . $fila[0] . "</option>";

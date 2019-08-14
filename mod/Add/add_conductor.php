@@ -89,7 +89,7 @@ $('.minMaxExample').datepicker({
 									<label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-industry"></i></label>
 								</div>
 								<?php		
-						                    		$SQL = "SELECT nombre,id_unidad FROM unidades WHERE activo = 1 AND asignada = 0;";
+						                    		$SQL = "SELECT nombre,id_unidad FROM unidades WHERE activo = 1 AND asignada = 1;";
 													$selectDepartamentos = $con->query($SQL);
 													echo "<select class='custom-select form-control text-center' id='SelectUnidadConductor'>";
 													echo "<option value='' selected>Asignar Unidad...</option>";

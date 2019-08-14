@@ -7,13 +7,12 @@
     <link rel="icon" type="image/png" href="../img/icons/l.ico" />
     <link rel="stylesheet" type="text/css" href="../vendor/bootstrap-4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../vendor/air-datepicker-master/css/datepicker.min.css">
- 
-	<link rel="stylesheet" type="text/css" href="../fonts/font-awesome-5.9.0/css/all.css">
+    <link rel="stylesheet" href="../vendor/datatable/css/datatables.min.css">
+	  <link rel="stylesheet" type="text/css" href="../fonts/font-awesome-5.9.0/css/all.css">
     <link rel="stylesheet" type="text/css" href="../css/style3.css">
-    <link rel="stylesheet" href="../vendor/animate/animate.css">
-    <link rel="stylesheet" href="../vendor/Hover-master/css/hover.css">
-    
-	<script type="text/javascript" src="../vendor/sweetalert/sweetalert.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../vendor/animate/animate.css">
+    <link rel="stylesheet" type="text/css" href="../vendor/Hover-master/css/hover.css">    
+	  <script type="text/javascript" src="../vendor/sweetalert/sweetalert.min.js"></script>
     <title>CDU</title>
 </head>
 <body  class="fixed-sn light-blue-skin fondo">
@@ -34,9 +33,10 @@
 
 
 <!-- PARTE DEL CODIGO AL VALIDAR EL USUARIO -->		
+<div class="container-fluid" id="Contenedor">
 <div id="wrapper" class="container h-100" >
-				<div id="page-content-wrapper" class="row h-100 justify-content-center align-items-center" style=" margin-left: 7px;">
-					<div class="container" id="Contenedor">
+				<div id="page-content-wrapper" class="row h-100 justify-content-center align-items-center" >
+					
 
           <div class="container animated login zoomIn margensuperior">
 	<div class="row h-100 justify-content-center align-items-center">   
@@ -133,9 +133,10 @@
 </div>
 
     <script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="../vendor/air-datepicker-master/js/datepicker.js"></script>
-  <script type="text/javascript" src="../vendor/air-datepicker-master/js/i18n/datepicker.en.js"></script>
-  <script type="text/javascript" src="../vendor/air-datepicker-master/js/i18n/datepicker.es.js"></script>
+    <script src="../vendor/air-datepicker-master/js/datepicker.js"></script>
+    <script src="../vendor/air-datepicker-master/js/i18n/datepicker.en.js"></script>
+    <script src="../vendor/air-datepicker-master/js/i18n/datepicker.es.js"></script>
+    <script src="../vendor/datatable/js/datatables.min.js"></script>
     <script src="../vendor/bootstrap-4.3.1/js/bootstrap.min.js"></script>
     <script src="../vendor/bootstrap-4.3.1/js/bootstrap.bundle.js"></script>
   	<script src="../js/mdb.min.js"></script>
@@ -143,13 +144,10 @@
 	  <script src="../vendor/bootstrap-4.3.1/js/popper.js"></script>
 	  <script src="../vendor/select2/select2.min.js"></script>
     <script src="../vendor/countdowntime/countdowntime.js"></script>
-    <script src="../js/datatables.min.js"></script>
     <script src="../js/popper.min.js"></script>
     <script src="../js/jquery.mCustomScrollbar.concat.min.js"></script>
 
-    <script type="text/javascript">
-
-
+<script type="text/javascript">
 //Metodos para agregar datos
 
 //metodo para añadir al conductor
@@ -185,7 +183,7 @@ function agregarunidad(){
 						}
 					});
 				} else {
-					swal("No me engañes", "Por favor todos los datos necesario asd s" , "error");
+					swal("No me engañes", "Por favor todos los datos necesarios" , "error");
 				};
 			};
 
@@ -253,8 +251,6 @@ function agregarruta(){
 				};
 			};
 
-$('.minMaxExample').datepicker();
-
 //Llamado de formularios
       //Agregar Conductor
 			$("#addConductor2").click(function(event) {
@@ -270,12 +266,28 @@ $('.minMaxExample').datepicker();
         $('.overlay').removeClass('active');
       });	
 
+      //Agregar unidad
       $("#addUnidad").click(function(event) {
         $("#Contenedor").load("Add/add_unidad.php");
         $('#sidebar').removeClass('active');
         $('.overlay').removeClass('active');
       });	
+
+      //Lista de unidades
+      $("#listUnidades").click(function(event) {
+        $("#Contenedor").load("List/list_unidades.php");
+        $('#sidebar').removeClass('active');
+        $('.overlay').removeClass('active');
+      });	
+
+//Lista de conductores
+      $("#listConductores").click(function(event) {
+        $("#Contenedor").load("List/list_conductores.php");
+        $('#sidebar').removeClass('active');
+        $('.overlay').removeClass('active');
+      });	
       
+      //Modal de salida
     $('#exampleModal').on('show.bs.modal', function (event) {
   var button = $(event.relatedTarget); 
   var recipient = button.data('whatever'); 
