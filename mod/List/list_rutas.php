@@ -8,21 +8,16 @@
 <?php
 include("../../php/conexion/conexion.php");	
 include "../../php/log.php";
-$selectunidades = $con->query("SELECT C.id_conductor, C.nombre, D.nombre, R.nombre, C.empresa, S.nombre, C.fecha, C.tipolic, C.fechalic, U.nombre FROM conductor C, rutas R, departamentos D, usuarios S, unidades U WHERE C.activo = 1 AND C.id_usuario = S.id_usuario AND D.id_departamento = C.departamento AND C.id_unidad = U.id_unidad;");
+$selectunidades = $con->query("SELECT R.id_ruta, R.nombre, R.descripcion, C.nombre, U.nombre FROM rutas R, conductor C, usuarios U WHERE R.id_ruta = C.id_ruta AND R.asignacion = C.id_conductor AND R.id_usuario = U.id_usuario;");
 ?>
  
                         <table id="tbUnidades" class="display table">
 						<thead class="thead-dark">
 							<tr>
 								<th class="text-center">Nombre</th>
-                                <th class="text-center">Departamento</th>
-                                <th class="text-center">Ruta</th>
-                                <th class="text-center">Empresa</th>
+                                <th class="text-center">Descripcion</th>
+                                <th class="text-center">Conductor</th>
                                 <th class="text-center">Alta</th>
-                                <th class="text-center">Fecha alt</th>
-                                <th class="text-center">Licencia</th>
-                                <th class="text-center">Fecha Lic</th>
-                                <th class="text-center">Unidad</th>
 								<th class="text-center">Accion</th>
                             </tr>
 						</thead>
@@ -33,12 +28,7 @@ $selectunidades = $con->query("SELECT C.id_conductor, C.nombre, D.nombre, R.nomb
                                 echo '<td class="text-center">' . $fila[2] . '</td>';
                                 echo '<td class="text-center">' . $fila[3] . '</td>';
                                 echo '<td class="text-center">' . $fila[4] . '</td>';
-                                echo '<td class="text-center">' . $fila[5] . '</td>';
-                                echo '<td class="text-center">' . $fila[6] . '</td>';
-                                echo '<td class="text-center">' . $fila[7] . '</td>';
-                                echo '<td class="text-center">' . $fila[8] . '</td>';
-                                echo '<td class="text-center">' . $fila[9] . '</td>';
-								echo '<td class="text-center"><a onClick="EliminarConductor('.$fila[0].',\''.$fila[1].'\')" id="eliminarconductor" class="text-light btn btn-danger btn-sm"><i class="fas fa-address-book"></i> Borrar</a>
+								echo '<td class="text-center"><a onClick="eliminarEmpleado('.$fila[0].')" id="eliminarempleado" class="text-light btn btn-success btn-sm"><i class="fas fa-address-book"></i> Borrar</a>
 								<a onClick="modEmpleado('.$fila[0].')" id="modificarusuario" class="text-light btn btn-info btn-sm"><i class="fas fa-edit"></i> Modificar</a>
 								</td>';
 								echo '</tr>';
@@ -149,3 +139,7 @@ document.querySelector("#exportar").addEventListener("click", function () {
     });
 });    
 </script>
+<style>
+    .swal-overlay {
+    background-color: rgba(216, 44, 44, 0.4);
+</style>

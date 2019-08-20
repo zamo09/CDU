@@ -4,11 +4,11 @@
 			<div class="card">
 				<div class="card-body">
                 <button class="btn btn-warning" id ="exportar" style="position: absolute;">Exportar</button>
-                    <h3 class="text-center default-text py-3"><i class="far fa-list-alt"></i> Lista de Conductores</h3> 
+                    <h3 class="text-center default-text py-3"><i class="fas fa-trash"></i> Papelera de Conductores</h3> 
 <?php
 include("../../php/conexion/conexion.php");	
 include "../../php/log.php";
-$selectunidades = $con->query("SELECT C.id_conductor, C.nombre, D.nombre, R.nombre, C.empresa, S.nombre, C.fecha, C.tipolic, C.fechalic, U.nombre FROM conductor C, rutas R, departamentos D, usuarios S, unidades U WHERE C.activo = 1 AND C.id_usuario = S.id_usuario AND D.id_departamento = C.departamento AND C.id_unidad = U.id_unidad;");
+$selectunidades = $con->query("SELECT C.id_conductor, C.nombre, D.nombre, R.nombre, C.empresa, S.nombre, C.fecha, C.tipolic, C.fechalic, U.nombre FROM conductor C, rutas R, departamentos D, usuarios S, unidades U WHERE C.activo = 0 AND C.id_usuario = S.id_usuario AND D.id_departamento = C.departamento AND C.id_unidad = U.id_unidad");
 ?>
  
                         <table id="tbUnidades" class="display table">
@@ -38,8 +38,8 @@ $selectunidades = $con->query("SELECT C.id_conductor, C.nombre, D.nombre, R.nomb
                                 echo '<td class="text-center">' . $fila[7] . '</td>';
                                 echo '<td class="text-center">' . $fila[8] . '</td>';
                                 echo '<td class="text-center">' . $fila[9] . '</td>';
-								echo '<td class="text-center"><a onClick="EliminarConductor('.$fila[0].',\''.$fila[1].'\')" id="eliminarconductor" class="text-light btn btn-danger btn-sm"><i class="fas fa-address-book"></i> Borrar</a>
-								<a onClick="modEmpleado('.$fila[0].')" id="modificarusuario" class="text-light btn btn-info btn-sm"><i class="fas fa-edit"></i> Modificar</a>
+								echo '<td class="text-center"><a onClick="EliminarConductorF('.$fila[0].',\''.$fila[1].'\')" id="eliminarconductor" class="text-light btn btn-danger btn-sm"><i class="fas fa-address-book"></i> Borrar</a>
+								<a onClick="RestaurarConductor('.$fila[0].',\''.$fila[1].'\')" id="RestaurarConductor" class="text-light btn btn-info btn-sm"><i class="fas fa-redo"></i> Restaurar</a>
 								</td>';
 								echo '</tr>';
                             }
