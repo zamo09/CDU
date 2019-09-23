@@ -8,7 +8,8 @@
 <?php
 include("../../php/conexion/conexion.php");	
 include "../../php/log.php";
-$selectunidades = $con->query("SELECT C.id_conductor, C.nombre, D.nombre, R.nombre, C.empresa, S.nombre, C.fecha, C.tipolic, C.fechalic, U.nombre FROM conductor C, rutas R, departamentos D, usuarios S, unidades U WHERE C.activo = 1 AND C.id_usuario = S.id_usuario AND D.id_departamento = C.departamento AND C.id_unidad = U.id_unidad;");
+session_start();
+$selectunidades = $con->query("SELECT C.id_conductor, C.nombre, D.nombre, R.nombre, C.empresa, S.nombre, C.fecha, C.tipolic, C.fechalic, U.nombre FROM conductor C, rutas R, departamentos D, usuarios S, unidades U WHERE C.activo = 1 AND C.id_usuario = S.id_usuario AND D.id_departamento = C.departamento AND C.id_unidad = U.id_unidad AND C.id_ruta = R.id_ruta;");
 ?>
  
                         <table id="tbUnidades" class="display table">
@@ -45,7 +46,6 @@ $selectunidades = $con->query("SELECT C.id_conductor, C.nombre, D.nombre, R.nomb
                             }
                             date_default_timezone_set("America/Mexico_City"); 
 													$fecha= date("d/m/Y H:i:s");
-													session_start();
 													$arreglo[0] = array("Se abrio la lista de Conductores ",$fecha ,$_SESSION['user']);
 													generarCSV($arreglo);
 

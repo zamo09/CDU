@@ -8,6 +8,7 @@
 <?php
 include("../../php/conexion/conexion.php");	
 include "../../php/log.php";
+session_start();
 $selectunidades = $con->query("SELECT U.id_unidad, U.nombre, U.marca, U.modelo, U.placas, U.año, U.tipo, U.empresa, U.numeromotor, U.numeropoliza, U.fechapoliza, S.nombre, C.nombre FROM unidades U, conductor C, usuarios S WHERE U.activo = 1 AND S.id_usuario = U.id_usuario AND C.id_conductor = U.asignada;");
 ?>
  
@@ -51,7 +52,6 @@ $selectunidades = $con->query("SELECT U.id_unidad, U.nombre, U.marca, U.modelo, 
                             }
                             date_default_timezone_set("America/Mexico_City"); 
 													$fecha= date("d/m/Y H:i:s");
-													session_start();
 													$arreglo[0] = array("Se abrio la lista de Unidades ",$fecha ,$_SESSION['user']);
 													generarCSV($arreglo);
 							?> 

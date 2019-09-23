@@ -34,7 +34,8 @@ $('.minMaxExample').datepicker({
 								</div>
 								<?php
 								include "../../php/conexion/conexion.php";		
-								include "../../php/log.php";	
+								include "../../php/log.php";
+								session_start();	
 						                    		$SQL = "SELECT nombre,id_ruta FROM Rutas WHERE activo = 1 AND disponible = 0 ORDER BY nombre;";
 													$selectRuta = $con->query($SQL);
 													echo "<select class='custom-select form-control text-center' id='SelectRutaConductor'>";
@@ -99,7 +100,6 @@ $('.minMaxExample').datepicker({
 													echo "</select>";
 													date_default_timezone_set("America/Mexico_City"); 
 													$fecha= date("d/m/Y H:i:s");
-													session_start();
 													$arreglo[0] = array("Se abrio el formulario de Add_conductor ",$fecha ,$_SESSION['user']);
 													generarCSV($arreglo);
 								?>

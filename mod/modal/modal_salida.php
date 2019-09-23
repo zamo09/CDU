@@ -17,10 +17,10 @@
 						<?php
 						include "../php/conexion/conexion.php";
 						include "../php/log.php";
-						$SQL = "SELECT nombre,id_unidad FROM unidades WHERE activo = 1 AND asignada = 1;";
+						$SQL = "SELECT nombre,id_unidad FROM unidades WHERE activo = 1;";
 						$selectDepartamentos = $con->query($SQL);
-						echo "<select class='custom-select form-control text-center' id='SelectUnidadConductor'>";
-						echo "<option value='' selected>Asignar Unidad...</option>";
+						echo "<select class='custom-select form-control text-center' id='SelectUnidadSalida'>";
+						echo "<option value='' selected>Seleccionar Unidad...</option>";
 						while ($fila = $selectDepartamentos->fetch_array()) {
 							echo "<option value='" . $fila[1] . "'>" . $fila[0] . "</option>";
 						}
@@ -36,9 +36,9 @@
 							<label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-industry"></i></label>
 						</div>
 						<?php
-						$SQL = "SELECT nombre,id_conductor FROM conductor WHERE activo = 1 AND id_ruta = 1;";
+						$SQL = "SELECT nombre,id_conductor FROM conductor WHERE activo = 1;";
 						$selectDepartamentos = $con->query($SQL);
-						echo "<select class='custom-select form-control text-center' id='ConductorRuta'>";
+						echo "<select class='custom-select form-control text-center' id='ConductorSalida'>";
 						echo "<option value='' selected>Asignar Conductor...</option>";
 						while ($fila = $selectDepartamentos->fetch_array()) {
 							echo "<option value='" . $fila[1] . "'>" . $fila[0] . "</option>";
@@ -55,7 +55,7 @@
 						<div class="input-group-prepend">
 							<span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
 						</div>
-						<input type="text" class="form-control text-center" placeholder="Fecha de Salida" id="FechaSalida" value="<?php echo $fecha ?>" readonly>
+						<input type="text" class="form-control text-center" placeholder="Fecha de Salida" id="FechaSalida" readonly>
 					</div>
 					<div class="input-group col-md-6">
 						<div class="input-group-prepend">
@@ -80,11 +80,11 @@
 						<div class="input-group-prepend">
 							<span class="input-group-text" id="basic-addon1"><i class="fas fa-car-side"></i></span>
 						</div>
-						<select class="custom-select form-control text-center" id="SelectEmpresaUnidad">
+						<select class="custom-select form-control text-center" id="SelectMotivoSalida">
 							<option value="" selected>Motivo ...</option>
-							<option value="CBC">Ruta</option>
+							<option value="Ruta">Ruta</option>
 							<option value="CBA">Supervicion</option>
-							<option value="CBA">Asignada</option>
+							<option value="CBc">Asignada</option>
 						</select>
 					</div>
 				</div>

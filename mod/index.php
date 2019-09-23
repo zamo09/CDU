@@ -8,7 +8,7 @@
   <link rel="icon" type="image/png" href="../img/icons/l.ico" />
   <link rel="stylesheet" type="text/css" href="../vendor/bootstrap-4.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="../vendor/air-datepicker-master/css/datepicker.min.css">
-  <link rel="stylesheet" href="../vendor/datatable/css/datatables.min.css">
+  <link rel="stylesheet" type="text/css" href="../vendor/datatable/css/datatables.min.css">
   <link rel="stylesheet" type="text/css" href="../fonts/font-awesome-5.9.0/css/all.css">
   <link rel="stylesheet" type="text/css" href="../css/style3.css">
   <link rel="stylesheet" type="text/css" href="../vendor/animate/animate.css">
@@ -23,6 +23,7 @@
   if (!isset($_SESSION["user"])) { } else {
     //incluimos la barra de navegacion 
     include "mov/nav_bar.php";
+    $_SESSION['motivo_salida']="";
     ?>
   <!-- <a href="../php/conexion/cerrar.php">Cerrar</a> -->
   <?php
@@ -183,6 +184,38 @@
         swal("No me engañes", "Por favor todos los datos necesarios", "error");
       };
     };
+     //Asignar Unidad
+     function asignarUnidad() {
+      var id_unidad = $('#SelectUnidadAsignar').val();
+      var id_conductor = $('#ConductorAsig').val();
+      var unidad = $('#SelectUnidadAsignar').find('option:selected').text();
+      var conductor = $('#ConductorAsig').find('option:selected').text();
+      if ($.trim(id_unidad).length > 0 && $.trim(id_conductor).length > 0) {
+        $.ajax({
+          url: "../php/update/asignar_unidad.php",
+          method: "POST",
+          data: {
+            id_unidad: id_unidad,
+            id_conductor: id_conductor
+          },
+          cache: "false",
+          beforeSend: function() {
+            $('#asignarUnidad').val("Asignando...");
+          },
+          success: function(data) {
+            $('#asignarUnidad').val("Asignar");
+            if (data == "1") {
+              swal("Perfecto!!", ("Ahora la Unidad " + unidad+ " ya esta asignada al conductor " + conductor), "success");
+              $("#Contenedor").load("Menu/conductor.php");
+            } else {
+              swal("Tenemos un problema", "La Unidad no se pudo asignar", "error");
+            }
+          }
+        });
+      } else {
+        swal("No me engañes", "Por favor selecciona los datos necesarios", "error");
+      };
+    };
     //metodos de eliminacion
     //elminar Conductor
     function EliminarConductor(id, nombre) {
@@ -326,13 +359,19 @@
       $('#sidebar').removeClass('active');
       $('.overlay').removeClass('active');
     });
+     //Asignar unidad
+     $("#asigUnidad").click(function(event) {
+      $("#Contenedor").load("Asig/asig_Unidad.php");
+      $('#sidebar').removeClass('active');
+      $('.overlay').removeClass('active');
+    });
     //Lista de unidades
     $("#listUnidades").click(function(event) {
       $("#Contenedor").load("List/list_unidades.php");
       $('#sidebar').removeClass('active');
       $('.overlay').removeClass('active');
     });
-   //Lista de conductores
+    //Lista de conductores
     $("#listConductores").click(function(event) {
       $("#Contenedor").load("List/list_conductores.php");
       $('#sidebar').removeClass('active');
@@ -356,11 +395,59 @@
       $('#sidebar').removeClass('active');
       $('.overlay').removeClass('active');
     });
+    //Metodo para buscar en un select
+    function buscarSelect(nombre, valor) {
+      
+      var select = document.getElementById(nombre); // creamos un variable que hace referencia al select
+      var buscar = valor; // obtenemos el valor a buscar
+      for (var i = 1; i < select.length; i++) { // recorremos todos los valores del select
+        if (select.options[i].value == buscar) { // seleccionamos el valor que coincide
+          select.selectedIndex = i;
+        }
+      }
+    };
+   //Metodo al seleccionar una unidad en la salida 
+    $("#SelectUnidadSalida").change(function() {
+      var sel = $(this).val();
+      var id = sel;
+    
+      $.ajax({
+        url: "../php/select/select_conductor.php",
+        method: "POST",
+        data: {
+          id_unidad: sel
+        },
+        cache: "false",
+        beforeSend: function() {},
+        success: function(data) {
+          if (data == "error") {
+          } else{
+              if(data == "1"){
+                var nombre = "ConductorSalida";
+                var sin = "1";
+                buscarSelect(nombre, sin);
+              } else{
+                var nombre = "ConductorSalida";                
+                buscarSelect(nombre, data);
+                var id_ruta= "<?php echo $_SESSION['motivo_salida']; ?>";
+                alert(id_ruta);
+                if (id_ruta != 1){
+                  buscarSelect("SelectMotivoSalida", "Ruta");
+                }
+              }        
+          }
+        }
+      });
+});
+ 
+
     //Modal de salida
     $('#exampleModal').on('show.bs.modal', function(event) {
       var button = $(event.relatedTarget);
       var recipient = button.data('whatever');
       var modal = $(this);
+      var fecha = new Date();
+      document.getElementById("FechaSalida").value = fecha.getFullYear() + "-" + (fecha.getMonth() + 1) + "-" + fecha.getDate() + " " + fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds();
     });
     //Modal de Retorno
     $('#ModalRetorno').on('show.bs.modal', function(event) {
@@ -374,7 +461,7 @@
       var recipient = button.data('whatever');
       var modal = $(this);
     });
-//Funcion que da movilidad al Menu
+    //Funcion que da movilidad al Menu
     $(document).ready(function() {
       $("#sidebar").mCustomScrollbar({
         theme: "minimal"
@@ -396,5 +483,4 @@
     });
   </script>
 </body>
-
 </html>

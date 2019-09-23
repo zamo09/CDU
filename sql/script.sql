@@ -1,4 +1,4 @@
-CREATE DATABASE dentalgroup;
+CREATE DATABASE ControlUnidades;
 	use ControlUnidades;
 
 CREATE TABLE Usuarios(
@@ -84,3 +84,34 @@ INSERT INTO Unidades (nombre,activo,marca,modelo,placas,año,tipo,id_usuario,emp
 
 /* Insert Obligatorio para el conductor Sin Conductor */
 INSERT INTO Conductor (nombre,activo,departamento,id_ruta,empresa,id_usuario,fecha,tipolic,fechalic,id_unidad) VALUES ('Sin Conductor',1,'Sin Departamento',1,'Sin Empresa',1,'0000/00/00','X','0000/00/00',1);
+
+/* Tabla que contiene los tipos de movimientos */
+CREATE TABLE Actividades(
+	id_actividad INT NOT NULL AUTO_INCREMENT COMMENT 'Clave Primaria',
+	nombre VARCHAR(255) NOT NULL COMMENT 'Nombre de la actividad',
+	descripcion VARCHAR(255) NOT NULL COMMENT 'Descripcion de la actividad',
+	activo BOOLEAN NOT NULL COMMENT 'Estado de la actividad',
+	id_usuario INT NOT NULL COMMENT 'Usuario que lo agrego',
+	PRIMARY KEY (id_actividad),
+	FOREIGN KEY (id_usuario) REFERENCES Usuarios (id_usuario)
+);
+
+/* Tabla que registra los movimientos de las unidades */
+CREATE TABLE Movimientos(
+	id_movimiento INT NOT NULL AUTO_INCREMENT COMMENT 'Clave Primaria',
+	id_usuario INT NOT NULL COMMENT 'Usuario que lo agrego',
+	id_unidad INT NOT NULL COMMENT 'unidad que se utilizo',
+	id_conductor INT NOT NULL COMMENT 'Conductor que utilizo la unidad',
+	id_actividad INT NOT NULL COMMENT 'Tipo de actividad que se realiza',
+	hora_salida DATE NOT NULL COMMENT 'Fecha y hora de la salida',
+	hora_retorno DATE NOT NULL COMMENT 'Fecha y hora de la salida',
+	km_salida VARCHAR(255) NOT NULL COMMENT 'Kilometraje con el que salio',
+	km_retorno VARCHAR(255) NOT NULL COMMENT 'Kilometraje con el que regreso',
+	activo BOOLEAN NOT NULL COMMENT 'Saber si es considerado o no',
+	estado BOOLEAN NOT NULL COMMENT 'Estado del movimiento',
+	PRIMARY KEY (id_movimiento),
+	FOREIGN KEY (id_usuario) REFERENCES Usuarios (id_usuario),
+	FOREIGN KEY (id_conductor) REFERENCES Conductor (id_conductor),
+	FOREIGN KEY (id_unidad) REFERENCES Unidades (id_unidad),
+	FOREIGN KEY (id_actividad) REFERENCES Actividades (id_actividad)
+);

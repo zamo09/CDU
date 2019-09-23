@@ -18,7 +18,7 @@
                         <a href="#" id="listUnidades"><i class="far fa-list-alt"></i> Lista de unidades</a>
                     </li>
                     <li>
-                        <a href="#">Asignar unidad</a>
+                        <a href="#"id="asigUnidad"><i class="fas fa-check-double"></i> Asignar unidad</a>
                     </li>
                 </ul>
             </li>
