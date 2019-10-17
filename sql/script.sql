@@ -103,15 +103,24 @@ CREATE TABLE Movimientos(
 	id_unidad INT NOT NULL COMMENT 'unidad que se utilizo',
 	id_conductor INT NOT NULL COMMENT 'Conductor que utilizo la unidad',
 	id_actividad INT NOT NULL COMMENT 'Tipo de actividad que se realiza',
-	hora_salida DATE NOT NULL COMMENT 'Fecha y hora de la salida',
-	hora_retorno DATE NOT NULL COMMENT 'Fecha y hora de la salida',
+	hora_salida DATETIME NOT NULL COMMENT 'Fecha y hora de la salida',
+	hora_retorno DATETIME NOT NULL COMMENT 'Fecha y hora de la salida',
 	km_salida VARCHAR(255) NOT NULL COMMENT 'Kilometraje con el que salio',
 	km_retorno VARCHAR(255) NOT NULL COMMENT 'Kilometraje con el que regreso',
 	activo BOOLEAN NOT NULL COMMENT 'Saber si es considerado o no',
 	estado BOOLEAN NOT NULL COMMENT 'Estado del movimiento',
+	Ubicacion VARCHAR(255) NOT NULL COMMENT 'Lugar donde se ubica la unidad',
 	PRIMARY KEY (id_movimiento),
 	FOREIGN KEY (id_usuario) REFERENCES Usuarios (id_usuario),
 	FOREIGN KEY (id_conductor) REFERENCES Conductor (id_conductor),
 	FOREIGN KEY (id_unidad) REFERENCES Unidades (id_unidad),
 	FOREIGN KEY (id_actividad) REFERENCES Actividades (id_actividad)
 );
+
+INSERT INTO Actividades (nombre,descripcion,activo,id_usuario) VALUES ("Ruta","Salida A Rutas", 1,1);
+INSERT INTO Actividades (nombre,descripcion,activo,id_usuario) VALUES ("Asigancion","Movimiento para usuarios Asignados", 1,1);
+INSERT INTO Actividades (nombre,descripcion,activo,id_usuario) VALUES ("Promotoria","Salida para usuarios de promotoria", 1,1);
+
+INSERT INTO movimientos (id_usuario, id_unidad, id_conductor, id_actividad, hora_salida, km_salida, activo, estado,ubicacion) VALUES (1,3,11,1, '2019/10/02 14:25', 1500, 1, 1, 'Bodega');
+
+SELECT km_retorno, Ubicacion FROM Movimientos WHERE id_unidad = 3 AND estado = 1;

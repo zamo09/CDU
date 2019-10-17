@@ -23,7 +23,6 @@
   if (!isset($_SESSION["user"])) { } else {
     //incluimos la barra de navegacion 
     include "mov/nav_bar.php";
-    $_SESSION['motivo_salida']="";
     ?>
   <!-- <a href="../php/conexion/cerrar.php">Cerrar</a> -->
   <?php
@@ -216,6 +215,38 @@
         swal("No me engañes", "Por favor selecciona los datos necesarios", "error");
       };
     };
+    //Asignar Unidad
+    function asignarRuta() {
+      var id_ruta = $('#SelectRutaAsignar').val();
+      var id_conductor = $('#ConductorAsigRuta').val();
+      var ruta = $('#SelectRutaAsignar').find('option:selected').text();
+      var conductor = $('#ConductorAsigRuta').find('option:selected').text();
+      if ($.trim(id_ruta).length > 0 && $.trim(id_conductor).length > 0) {
+        $.ajax({
+          url: "../php/update/asignar_ruta.php",
+          method: "POST",
+          data: {
+            id_ruta: id_ruta,
+            id_conductor: id_conductor
+          },
+          cache: "false",
+          beforeSend: function() {
+            $('#asignarRuta').val("Asignando...");
+          },
+          success: function(data) {
+            $('#asignarRuta').val("Asignar");
+            if (data == "1") {
+              swal("Perfecto!!", ("Ahora la Ruta " + ruta + " ya esta asignada al conductor " + conductor), "success");
+              $("#Contenedor").load("Menu/conductor.php");
+            } else {
+              swal("Tenemos un problema", "La Ruta no se pudo asignar", "error");
+            }
+          }
+        });
+      } else {
+        swal("No me engañes", "Por favor selecciona los datos necesarios", "error");
+      };
+    };
     //metodos de eliminacion
     //elminar Conductor
     function EliminarConductor(id, nombre) {
@@ -365,6 +396,24 @@
       $('#sidebar').removeClass('active');
       $('.overlay').removeClass('active');
     });
+     //Asignar Ruta
+     $("#asigRutas").click(function(event) {
+      $("#Contenedor").load("Asig/asig_Ruta.php");
+      $('#sidebar').removeClass('active');
+      $('.overlay').removeClass('active');
+    });
+     //Asignar Ruta Cunductor 
+     $("#asigRutasConductor").click(function(event) {
+      $("#Contenedor").load("Asig/asig_Ruta.php");
+      $('#sidebar').removeClass('active');
+      $('.overlay').removeClass('active');
+    });
+       //Asignar unidad Conductor
+     $("#asigUnidadConductor").click(function(event) {
+      $("#Contenedor").load("Asig/asig_Unidad.php");
+      $('#sidebar').removeClass('active');
+      $('.overlay').removeClass('active');
+    });
     //Lista de unidades
     $("#listUnidades").click(function(event) {
       $("#Contenedor").load("List/list_unidades.php");
@@ -408,9 +457,9 @@
     };
    //Metodo al seleccionar una unidad en la salida 
     $("#SelectUnidadSalida").change(function() {
+      $("#KmSalida").attr("readonly","readonly");
       var sel = $(this).val();
-      var id = sel;
-    
+      var id = sel;    
       $.ajax({
         url: "../php/select/select_conductor.php",
         method: "POST",
@@ -421,24 +470,129 @@
         beforeSend: function() {},
         success: function(data) {
           if (data == "error") {
+            $("#KmSalida").removeAttr("readonly");
           } else{
-              if(data == "1"){
-                var nombre = "ConductorSalida";
-                var sin = "1";
-                buscarSelect(nombre, sin);
+              variables = data.split("-");
+              var id_conductor = variables[0];
+              if(id_conductor  == "1"){
+                buscarSelect("ConductorSalida", "1");
               } else{
                 var nombre = "ConductorSalida";                
-                buscarSelect(nombre, data);
-                var id_ruta= "<?php echo $_SESSION['motivo_salida']; ?>";
-                alert(id_ruta);
+                buscarSelect(nombre, id_conductor);
+                var id_ruta= variables[1];
                 if (id_ruta != 1){
-                  buscarSelect("SelectMotivoSalida", "Ruta");
+                  buscarSelect("MotivoSalida", "1");
+                }                
+                var Ubicacion = variables[3];
+                buscarSelect("SelectEmpresaUbicacion", Ubicacion);
+                var km = variables[2];
+                $("#KmSalida").val(km);
+                if(typeof km === 'undefined'){
+                  $("#KmSalida").removeAttr("readonly");
                 }
               }        
           }
         }
       });
 });
+
+$("#SelectUnidadRetorno").change(function() {
+  var sel = $(this).val();
+      var id = sel;    
+      $.ajax({
+        url: "../php/select/select_kmsalida.php",
+        method: "POST",
+        data: {
+          id_unidad: sel
+        },
+        cache: "false",
+        beforeSend: function() {},
+        success: function(data) {
+          if (data == "error") {
+            alert("error");
+          } else{
+            var km_salidaR = data;
+            $("#KmSalidaR").val(km_salidaR);
+          }
+        }
+      });
+});
+
+
+
+function RegistrarRetorno(){
+  var id_unidad = $('#SelectUnidadRetorno').val();
+  var lugar = $('#LugarRetorno').val();
+  var fechaRetorno = $('#FechaRetorno').val();
+  var km_salida = $('#KmSalidaR').val();
+  var km_retorno = $('#KmRetorno').val();  
+  alert(km_retorno );
+  if ($.trim(id_unidad).length > 0 && $.trim(lugar).length > 0 && $.trim(fechaRetorno).length > 0 && $.trim(km_salida).length > 0 && $.trim(km_retorno).length > 0 ) {
+    if (parseInt(km_retorno) < parseInt(km_salida)){
+      swal("Tenemos un problema", "El Km de regreso debe ser igual o mayor al de salida", "error");
+    }else{
+      $.ajax({
+        url: "../php/update/add_retorno.php",
+        method: "POST",
+        data: {
+          id_unidad: id_unidad, lugar: lugar, fechaRetorno: fechaRetorno, km_retorno: km_retorno
+        },
+        cache: "false",
+        beforeSend: function() {},
+        success: function(data) {
+          if (data == "error") {
+            swal("Tenemos un problema", "La Unidad no Pudo regresar", "error");
+          } else{
+            swal("Perfecto!!", ("Ahora la unidad ya esta de Regreso"), "success");
+          }
+        }
+      });
+    }
+  }else{
+    swal("No me engañes", "Por favor selecciona los datos necesarios", "error");
+  }
+};
+
+//Metodo que Guarda una salida
+function RegistrarSalida() {
+  var id_unidad = $('#SelectUnidadSalida').val();
+  var unidad = $('#SelectUnidadSalida').text();
+  var id_conductor = $('#ConductorSalida').val();
+  var fecha = $('#FechaSalida').val();
+  var km = $('#KmSalida').val();
+  var ubi = $('#SelectEmpresaUbicacion').val();
+  var activ = $('#MotivoSalida').val();
+  var motivo = $('#MotivoSalida').text();
+  if ($.trim(id_unidad).length > 0 && $.trim(id_conductor).length > 0 && $.trim(fecha).length > 0 && $.trim(km).length > 0 && $.trim(ubi).length > 0 && $.trim(activ).length > 0 && $.trim(motivo).length > 0) {
+        $.ajax({
+          url: "../php/insert/add_salida.php",
+          method: "POST",
+          data: {
+            id_unidad: id_unidad,
+            id_conductor: id_conductor,
+            fecha: fecha, 
+            km: km,
+            ubi: ubi,
+            activ: activ
+          },
+          cache: "false",
+          beforeSend: function() {
+            $('#RegistrarSalida').val("Saliendo ...");
+          },
+          success: function(data) {
+            $('#RegistrarSalida').val("Registrar Salida");
+            if (data == "1") {
+              swal("Perfecto!!", ("Ahora la unidad " + unidad + " esta en " + motivo), "success");
+              $("#Contenedor").load("Menu/conductor.php");
+            } else {
+              swal("Tenemos un problema", "La Unidad no se pudo Salir", "error");
+            }
+          }
+        });
+      } else {
+        swal("No me engañes", "Por favor selecciona los datos necesarios", "error");
+      };
+};
  
 
     //Modal de salida
@@ -454,6 +608,8 @@
       var button = $(event.relatedTarget);
       var recipient = button.data('whatever');
       var modal = $(this);
+      var fecha = new Date();
+      document.getElementById("FechaRetorno").value = fecha.getFullYear() + "-" + (fecha.getMonth() + 1) + "-" + fecha.getDate() + " " + fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds();
     });
     //Modal de Ralla
     $('#ModalFalla').on('show.bs.modal', function(event) {
@@ -481,6 +637,12 @@
         $('a[aria-expanded=true]').attr('aria-expanded', 'false');
       });
     });
+
+    function soloNumeros(e){
+      var key = window.Event ? e.which : e.keyCode
+      return (key >= 48 && key <= 57)
+    };
+
   </script>
 </body>
 </html>

@@ -14,8 +14,8 @@
 			$_SESSION['nombre'] = $data['nombre'];
 			$_SESSION['id_usuario'] = $data['id_usuario'];
 			date_default_timezone_set("America/Mexico_City"); 
-        	$fecha= date("Y/m/d H:i:s");
-			$arreglo[0] = array("Inicio Sesion el usuario ". $_SESSION['nombre'],$fecha, $_SESSION['nombre']);
+        	$fecha= date("d/m/Y H:i:s");
+			$arreglo[0] = array("Inicio Sesion el usuario ". $_SESSION['nombre'],$fecha, $_SESSION['user']);
             generarCSV($arreglo);
 			echo "1";
 		}else{

@@ -23,8 +23,8 @@
                 </ul>
             </li>
             <li>
-                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-address-card"></i> Condutores</a>
-                <ul class="collapse list-unstyled" id="pageSubmenu">
+                <a href="#ConductorSubMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-address-card"></i> Condutores</a>
+                <ul class="collapse list-unstyled" id="ConductorSubMenu">
                     <li>
                         <a id="addConductor2" href="#"><i class="fas fa-user-cog"></i> Agregar Conductor</a>
                     </li>
@@ -41,7 +41,15 @@
                     }
                     ?>
                     <li>
-                        <a href="#">Asignar Ruta</a>
+                        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-address-card"></i> Asignar Conductor</a>
+                        <ul class="collapse list-unstyled" id="pageSubmenu">
+                            <li>
+                                <a id="asigRutasConductor" href="#"><i class="fas fa-map-marker-alt"></i></i> Asignar Ruta</a>
+                            </li>
+                            <li>
+                                <a id="asigUnidadConductor" href="#"><i class="fas fa-angle-double-right"></i> Asignar Unidad</a>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </li>
@@ -55,7 +63,7 @@
                         <a id="listRutas" href="#"><i class="far fa-list-alt"></i> Lista de rutas</a>
                     </li>
                     <li>
-                        <a href="#">Page 3</a>
+                        <a id="asigRutas" href="#"><i class="fas fa-map-marker-alt"></i> Asignar Ruta</a>
                     </li>
                 </ul>
             </li>
