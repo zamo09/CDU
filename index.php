@@ -45,7 +45,7 @@ if (isset($_SESSION["user"])){
 					</span>
 
                     <div class="wrap-input100 validate-input" data-validate="Ingresa tu nombre de usuario">
-                        <input class="input100" type="text" name="user" id="user" placeholder="Usuario">
+                        <input class="input100" type="text" name="user" id="user" placeholder="Usuario" onkeyup="onKeyUp(event)">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
 							<i class="fa fa-user" aria-hidden="true"></i>
@@ -53,7 +53,7 @@ if (isset($_SESSION["user"])){
                     </div>
 
                     <div class="wrap-input100 validate-input" data-validate="Contraseña Requerida">
-                        <input class="input100" type="password" name="pass" id="pass" placeholder="Contraseña">
+                        <input class="input100" type="password" name="pass" id="pass" placeholder="Contraseña" onkeyup="onKeyUp(event)">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
 							<i class="fa fa-lock" aria-hidden="true"></i>
@@ -112,7 +112,19 @@ if (isset($_SESSION["user"])){
 
 $(document).ready(function(){
 			$('#login').click(function(){
-				var user = $('#user').val();
+				Validar();
+			});
+        });
+        
+        function onKeyUp(event) {
+    var keycode = event.keyCode;
+    if(keycode == '13'){
+      Validar();
+    }
+  };
+
+  function Validar(){
+    var user = $('#user').val();
 				var pass = $('#pass').val();
 				if ($.trim(user).length > 0 && $.trim(pass).length > 0){
 					$.ajax({
@@ -135,8 +147,7 @@ $(document).ready(function(){
 				}else{
 					$('#result').html("<div class='error-btn'>Ingresa un usuario o contraseña</div>");
 				};
-			});
-		});
+  };
 	</script>
 
 </html>

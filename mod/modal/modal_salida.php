@@ -78,7 +78,7 @@
 							<span class="input-group-text" id="basic-addon1"><i class="fas fa-car-side"></i></span>
 						</div>
 						<?php
-						$SQL = "SELECT nombre,id_actividad FROM Actividades WHERE activo = 1;";
+						$SQL = "SELECT nombre,id_actividad FROM actividades WHERE activo = 1;";
 						$selectDepartamentos = $con->query($SQL);
 						echo "<select class='custom-select form-control text-center' id='MotivoSalida'>";
 						echo "<option value='' selected>Motivo Salida...</option>";

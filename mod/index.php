@@ -33,7 +33,7 @@
     <div id="wrapper" class="container h-100">
       <div id="page-content-wrapper" class="row h-100 justify-content-center align-items-center">
         <?php
-        include "menu/conductor.php";
+        include "Menu/conductor.php";
         ?>
       </div>
     </div>
@@ -440,7 +440,21 @@
     });
     //menu principal
     $("#menuprincipal").click(function(event) {
-      $("#Contenedor").load("menu/conductor.php");
+      $("#Contenedor").load("Menu/conductor.php");
+      $('#sidebar').removeClass('active');
+      $('.overlay').removeClass('active');
+    });
+
+      //menu principal
+      $("#listSalidas").click(function(event) {
+      $("#Contenedor").load("List/list_salidas.php");
+      $('#sidebar').removeClass('active');
+      $('.overlay').removeClass('active');
+    });
+
+       //menu principal
+       $("#reporteEsp").click(function(event) {
+      $("#Contenedor").load("Menu/reporte_salidas.php");
       $('#sidebar').removeClass('active');
       $('.overlay').removeClass('active');
     });

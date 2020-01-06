@@ -36,7 +36,7 @@ $('.minMaxExample').datepicker({
 								include "../../php/conexion/conexion.php";		
 								include "../../php/log.php";
 								session_start();	
-						                    		$SQL = "SELECT nombre,id_ruta FROM Rutas WHERE activo = 1 AND disponible = 0 ORDER BY nombre;";
+						                    		$SQL = "SELECT nombre,id_ruta FROM rutas WHERE activo = 1 AND disponible = 0 ORDER BY nombre;";
 													$selectRuta = $con->query($SQL);
 													echo "<select class='custom-select form-control text-center' id='SelectRutaConductor'>";
 													echo "<option value='' selected>Ruta ...</option>";
@@ -53,7 +53,7 @@ $('.minMaxExample').datepicker({
 									<label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-industry"></i></label>
 								</div>
 								<?php		
-						                    		$SQL = "SELECT nombre,id_departamento FROM Departamentos WHERE activo = 1;";
+						                    		$SQL = "SELECT nombre,id_departamento FROM departamentos WHERE activo = 1;";
 													$selectDepartamentos = $con->query($SQL);
 													echo "<select class='custom-select form-control text-center' id='SelectDepartamentoConductor'>";
 													echo "<option value='' selected>Departamento...</option>";

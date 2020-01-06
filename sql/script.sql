@@ -124,3 +124,7 @@ INSERT INTO Actividades (nombre,descripcion,activo,id_usuario) VALUES ("Promotor
 INSERT INTO movimientos (id_usuario, id_unidad, id_conductor, id_actividad, hora_salida, km_salida, activo, estado,ubicacion) VALUES (1,3,11,1, '2019/10/02 14:25', 1500, 1, 1, 'Bodega');
 
 SELECT km_retorno, Ubicacion FROM Movimientos WHERE id_unidad = 3 AND estado = 1;
+
+/* Consulta para obtener la lista de movimientos */
+Select U.nombre, C.nombre, M.hora_salida, M.hora_retorno, M.km_salida, M.km_retorno,M.ubicacion, A.nombre FROM unidades U, conductor C, movimientos M, actividades A
+WHERE U.id_unidad = M.id_unidad AND C.id_conductor = M.id_conductor AND A.id_actividad = M.id_actividad;

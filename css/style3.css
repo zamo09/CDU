@@ -1,6 +1,25 @@
 /*
-    DEMO STYLE
+    Estilos Samy
 */
+
+.tablasamy {
+    border: rgb(7, 0, 0)solid;
+}
+
+.celdasamy {
+    border: rgb(0, 0, 0) 2px solid;
+}
+
+.filaVerde {
+    color: white;
+    background-color: rgb(34, 163, 66);
+    border-collapse: separate;
+}
+
+.filaRoja {
+    color: white;
+    background-color: rgb(255, 102, 0);
+}
 
 
 /* Estilos mios*/

@@ -67,9 +67,23 @@
                     </li>
                 </ul>
             </li>
-            <li>
-                <a href="#">About</a>
+            <?php
+                    if ($_SESSION['tipo'] == "root" or $_SESSION['tipo'] == "Admi") {
+             ?>
+              <li>
+                <a href="#SMmovimientos" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-road"></i> Movimientos</a>
+                <ul class="collapse list-unstyled" id="SMmovimientos">
+                    <li>
+                    <a id="listSalidas" href="#"><i class="fas fa-list-alt"></i> Mostrar Salidas</a>
+                    </li>
+                    <li>
+                        <a id="reporteEsp" href="#"><i class="fas fa-clipboard-list"></i> Reporte Salidas</a>
+                    </li>
+                </ul>
             </li>
+            <?php
+                    }
+                    ?>
             <li>
                 <a href="#">Portfolio</a>
             </li>
@@ -88,7 +102,7 @@
                     <i class="fas fa-arrow-left"></i>
                 </div>
                 <div class="sidebar-header">
-                    <h3>Bootstrap Sidebar</h3>
+                    <h3>CDU</h3>
                 </div>
             </nav>
             <!-- NavBar-->
@@ -104,13 +118,13 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav navbar-nav ml-auto">
                             <li class="nav-item active">
-                                <a class="nav-link" href="#">Page</a>
+                                <a class="nav-link" href="#">Reportes</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Page</a>
+                                <a class="nav-link" href="#">Notificaciones</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="addConductor">sadasPage</a>
+                                <a class="nav-link" id="addConductor">Cambiar Contraseña</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="../php/conexion/cerrar.php">Cerrar Sesion</a>
