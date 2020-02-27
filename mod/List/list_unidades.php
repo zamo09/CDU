@@ -46,7 +46,7 @@ $selectunidades = $con->query("SELECT U.id_unidad, U.nombre, U.marca, U.modelo, 
                                 echo '<td class="text-center">' . $fila[10] . '</td>';
                                 echo '<td class="text-center">' . $fila[11] . '</td>';
 								echo '<td class="text-center"><a onClick="eliminarEmpleado('.$fila[0].')" id="eliminarempleado" class="text-light btn btn-success btn-sm"><i class="fas fa-address-book"></i> Borrar</a>
-								<a onClick="modEmpleado('.$fila[0].')" id="modificarusuario" class="text-light btn btn-info btn-sm"><i class="fas fa-edit"></i> Modificar</a>
+								<a onClick="modUnidad('.$fila[0].')" id="modificarusuario" class="text-light btn btn-danger btn-sm"><i class="fas fa-edit"></i> Modificar</a>
 								</td>';
 								echo '</tr>';
                             }
@@ -152,9 +152,12 @@ document.querySelector("#exportar").addEventListener("click", function () {
         export_table_to_csv(html, value + ".csv");
     }    
     });
-});    
+});  
+
+//Modificar Unidad 
+function modUnidad(id_unidad){
+    $.post("Mod/mod_unidad.php",{id_unidad: id_unidad} ,function(htmlexterno){
+   $("#Contenedor").html(htmlexterno);
+    	});    
+	};
 </script>
-<style>
-    .swal-overlay {
-    background-color: rgba(216, 44, 44, 0.4);
-</style>

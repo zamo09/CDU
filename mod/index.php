@@ -247,6 +247,7 @@
         swal("No me engañes", "Por favor selecciona los datos necesarios", "error");
       };
     };
+    
     //metodos de eliminacion
     //elminar Conductor
     function EliminarConductor(id, nombre) {
