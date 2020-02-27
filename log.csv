@@ -1180,6 +1180,7 @@ Acción;Date;Usuaio
 "Inicio Sesion el usuario Cesar Samuel Rodriguez Hernandez";"30/01/2020 10:24:19";zamo
 "Se abrio la lista de Unidades ";"30/01/2020 10:24:24";zamo
 "Se abrio el formulario de Add_Unidad ";"30/01/2020 10:24:26";zamo
+<<<<<<< HEAD
 "Inicio Sesion el usuario Cesar Samuel Rodriguez Hernandez";"26/02/2020 10:26:42";zamo
 "Se abrio la lista de Unidades ";"26/02/2020 10:26:49";zamo
 "Se abrio el formulario de Add_Unidad ";"26/02/2020 10:26:52";zamo
@@ -1360,3 +1361,5 @@ Acción;Date;Usuaio
 "Se abrio la lista de Unidades ";"26/02/2020 18:13:06";zamo
 "Se abrio el formulario de mod_Unidad ";"26/02/2020 18:13:08";zamo
 "Se selecciono la la unidad 11 Para dar Modificar";"26/02/2020 18:13:08";zamo
+=======
+>>>>>>> master
