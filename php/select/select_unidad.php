@@ -25,7 +25,7 @@
                 $motor = $data['numeromotor'];
                 $poliza = $data['numeropoliza'];
                 $fechapol = $data['fechapoliza'];
-				$imprimir = $nombre . "-" . $marca . "-" . $modelo . "-" . $placa . "-" . $año  . "-" . $tipo . "-" . $empresa . "-" . $id_conductor . "-" . $motor . "-" . $poliza . "-" . $fechapol;	
+				$imprimir = $nombre . "." . $marca . "." . $modelo . "." . $placa . "." . $año  . "." . $tipo . "." . $empresa . "." . $id_conductor . "." . $motor . "." . $poliza . "." . $fechapol;	
 			}else{
 				$imprimir = "error";	
 			}					

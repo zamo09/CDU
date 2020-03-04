@@ -18,7 +18,7 @@
 			$arreglo[0] = array("Inicio Sesion el usuario ". $_SESSION['nombre'],$fecha, $_SESSION['user']);
             generarCSV($arreglo);
 			echo "1";
-		}else{
+		}else{ 
 			echo "error";
 		}
 	}else{

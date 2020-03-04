@@ -155,37 +155,13 @@ document.querySelector("#exportar").addEventListener("click", function () {
 });  
 
 //Modificar Unidad 
-<<<<<<< HEAD
 function modUnidad(id_unidad){
     $.post("Mod/mod_unidad.php",{id_unidad: id_unidad} ,function(htmlexterno){
    $("#Contenedor").html(htmlexterno);
     	});    
 	};
 </script>
-=======
-function modUnidad(idUnidad){
-		$("#Contenedor").load('Add/add_unidad.php');
-		$.ajax({
-			url: "../PHP/consultar_empleado.php",
-			method: "POST",
-			data: {id:idUnidad},
-			dataType: 'json',
-			cache: "false",
-			success:function(data){
-				document.getElementById("empleado").value=""+data[1]+"";
-				var select = document.getElementById('empresa');
-				document.getElementById("idempleado").value=""+data[0]+"";
-				if(data[2] == "CBA"){
-					select.selectedIndex=1;
-				}else{
-					select.selectedIndex=2;
-				}
-			}
-		});
-	};
-</script>
 <style>
     .swal-overlay {
     background-color: rgba(216, 44, 44, 0.4);
 </style>
->>>>>>> master

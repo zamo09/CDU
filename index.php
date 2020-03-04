@@ -70,26 +70,16 @@ if (isset($_SESSION["user"])){
 							Vista de Operadores
 							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
 						</a>
+                    </div>  
                     </div>
-                   
-	
-
-                   
-                </div>
                 <div class="container">
 		<div class="row justify-content-center align-items-center alerta_error">
 			<span id="result"></span>
 		</div>
 	</div>
-            </div>
-            
-        </div>
-        
+            </div>            
+        </div>        
     </div>
-
-
-
-
     <!--===============================================================================================-->
     <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
     <!--===============================================================================================-->
