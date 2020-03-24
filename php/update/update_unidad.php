@@ -24,9 +24,11 @@
         if ($num_row == "1"){
             $Unidad = mysqli_fetch_array($sql_inicial);
         }
-        $find_nombre = $con ->query("SELECT id_unidad from unidades where nombre = '$nombre' or placas = '$placas' or asignada = '$conductor' or numeromotor = '$motor' or numeropoliza = '$poliza' and id_unidad !=  ; $id_uni");
-        if(!empty($find_nombre) AND mysqli_num_rows($find_nombre) > 0){
+        $find_nombre = $con ->query("SELECT id_unidad from unidades where nombre = '$nombre' or placas = '$placas' or asignada = '$conductor' or numeromotor = '$motor' or numeropoliza = '$poliza' and id_unidad !=  $id_uni;");
+        $num_row2 = mysqli_num_rows($find_nombre);
+		if ($num_row2 != "1"){
                 // el dato ya existe en la base de datos
+                echo "duplicado";
         }else{
             $actualizacion = "UPDATE unidades SET  nombre = '$nombre', placas = '$placas', marca = '$marca',  modelo='$modelo', año='$año', tipo='$tipo', empresa ='$empresa', asignada = $conductor, numeromotor='$motor', numeropoliza='$poliza', fechapoliza='$fechapoliza' WHERE id_unidad = $id_uni;";
                 $sql =$con->query($actualizacion);

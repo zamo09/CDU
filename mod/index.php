@@ -147,12 +147,15 @@
           },
           success: function(data) {
             $('#guardarunidad').val("Guardar");
-            alert(data);
             if (data == "1") {
               swal("Perfecto!!", ("Ahora la unidad " + nombre + " ya ya fue actualizada"), "success");
               $("#Contenedor").load("List/list_unidades.php");
             } else {
-              swal("Tenemos un problema", "No se pudo actualizar la unidad", "error");
+              if(data=="duplicado"){
+                swal("Campo duplicado", "Alguno de los campos ya se encuentra en la base de datos", "error");
+              }else{
+                swal("Tenemos un problema", "No se pudo actualizar la unidad", "error");
+              }
             }
           }
         });
