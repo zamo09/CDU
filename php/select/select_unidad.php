@@ -24,8 +24,9 @@
                 $id_conductor = $data['asignada'];
                 $motor = $data['numeromotor'];
                 $poliza = $data['numeropoliza'];
-                $fechapol = $data['fechapoliza'];
-				$imprimir = $nombre . "." . $marca . "." . $modelo . "." . $placa . "." . $año  . "." . $tipo . "." . $empresa . "." . $id_conductor . "." . $motor . "." . $poliza . "." . $fechapol;	
+				$fechapol = $data['fechapoliza'];
+				$id_uni = $data['id_unidad'];
+				$imprimir = $nombre . "." . $marca . "." . $modelo . "." . $placa . "." . $año  . "." . $tipo . "." . $empresa . "." . $id_conductor . "." . $motor . "." . $poliza . "." . $fechapol. "." . $id_uni;	
 			}else{
 				$imprimir = "error";	
 			}					

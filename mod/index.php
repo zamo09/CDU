@@ -109,6 +109,57 @@
         swal("No me engañes", "Por favor todos los datos necesarios", "error");
       };
     };
+    //modificar unidad 
+    function modificarunidad() {
+      var id_uni = $('#Id_unidad').val();
+      var nombre = $('#NombreUnidad').val();
+      var conductor = $('#ConductorUnidad').val();
+      var marca = $("#MarcaUnidad").val();
+      var modelo = $("#ModeloUnidad").val();
+      var placas = $("#PlacasUnidad").val();
+      var año = $("#AñoUnidad").val();
+      var tipo = $("#TipoUnidad").val();
+      var empresa = $("#SelectEmpresaUnidad").val();
+      var motor = $("#MotorUnidad").val();
+      var poliza = $("#PolizaUnidad").val();
+      var fechapoliza = $("#FechaVencimientoPlizaUnidad").val();
+      if ($.trim(id_uni).length > 0 && $.trim(nombre).length > 0 && $.trim(conductor).length > 0 && $.trim(marca).length > 0 && $.trim(modelo).length > 0 && $.trim(placas).length > 0 && $.trim(año).length > 0 && $.trim(tipo).length > 0 && $.trim(empresa).length > 0 && $.trim(motor).length > 0 && $.trim(poliza).length > 0 && $.trim(fechapoliza).length > 0) {
+        $.ajax({
+          url: "../php/update/update_unidad.php",
+          method: "POST",
+          data: {
+            id_uni: id_uni,
+            nombre: nombre,
+            conductor: conductor,
+            marca: marca,
+            modelo: modelo,
+            placas: placas,
+            año: año,
+            tipo: tipo,
+            empresa: empresa,
+            motor: motor,
+            poliza: poliza,
+            fechapoliza: fechapoliza
+          },
+          cache: "false",
+          beforeSend: function() {
+            $('#guardarunidad').val("Guardando...");
+          },
+          success: function(data) {
+            $('#guardarunidad').val("Guardar");
+            alert(data);
+            if (data == "1") {
+              swal("Perfecto!!", ("Ahora la unidad " + nombre + " ya ya fue actualizada"), "success");
+              $("#Contenedor").load("List/list_unidades.php");
+            } else {
+              swal("Tenemos un problema", "No se pudo actualizar la unidad", "error");
+            }
+          }
+        });
+      } else {
+        swal("No me engañes", "Por favor todos los datos necesarios", "error");
+      };
+    };
     //metodo para añadir al conductor
     function agregarconductor() {
       var nombre = $('#NombreConductor').val();

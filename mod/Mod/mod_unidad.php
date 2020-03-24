@@ -23,7 +23,8 @@ function miFuncion(id_unidad) {
 				document.getElementById("AñoUnidad").value = arreglo[4];
 				document.getElementById("MotorUnidad").value = arreglo[8];
 				document.getElementById("PolizaUnidad").value = arreglo[9];
-				document.getElementById("TipoUnidad").value = arreglo[5];		
+				document.getElementById("TipoUnidad").value = arreglo[5];	
+				document.getElementById("Id_unidad").value = arreglo[11];	
 				fecha =  convertDateFormat(arreglo[10]);
 				document.getElementById("FechaVencimientoPlizaUnidad").value =fecha;		
 				buscarSelect("ConductorUnidad", arreglo[7]);	
@@ -141,7 +142,8 @@ function convertDateFormat(string) {
 									<option value="CBC">CBC</option>
 									<option value="CBA">CBA</option>
 								</select>
-							</div>   	            					                     	
+							</div>   
+							<input id="Id_unidad" name="Id_unidad" type="hidden">	            					                     	
 						</div><br>
 						<br>
 						<div class="row justify-content-md-center">
@@ -149,7 +151,7 @@ function convertDateFormat(string) {
 								<button type="" class="btn btn-danger btn-lg btn-block" onClick="salida()"><i class="fas fa-times-circle "></i> Cancelar</button>
 							</div><br>              
 							<div class="col-lg-4 col-md-12 col-sm-12 text-left">
-								<button type="submit" id="guardarruta" class="btn btn-success btn-lg btn-block" onClick="agregarunidad()"><i class="fas fa-save"></i> Guardar</button>
+								<button type="submit" id="guardarruta" class="btn btn-warning btn-lg btn-block" onClick="modificarunidad()"><i class="fas fa-edit"></i> Modificar</button>
 							</div>
 						</div> 
 						<br>              	
